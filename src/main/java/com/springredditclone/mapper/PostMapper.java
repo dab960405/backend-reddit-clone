@@ -3,7 +3,6 @@ package com.springredditclone.mapper;
 import com.github.marlonlom.utilities.timeago.TimeAgo;
 import com.springredditclone.dto.PostRequest;
 import com.springredditclone.dto.PostResponse;
-import com.programming.techie.springredditclone.model.*;
 import com.springredditclone.model.*;
 import com.springredditclone.repository.CommentRepository;
 import com.springredditclone.repository.VoteRepository;
