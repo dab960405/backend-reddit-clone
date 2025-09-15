@@ -12,6 +12,8 @@ import com.springredditclone.repository.UserRepository;
 import com.springredditclone.repository.VerificationTokenRepository;
 import com.springredditclone.security.JwtProvider;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -29,10 +31,12 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor   // ✅ solo constructor para dependencias final
 @Transactional
+@Slf4j
 public class AuthService {
-    @Value("${app.url}")
+
+    @Value("${app.url}")   // ✅ inyectado desde application.properties o env var APP_URL
     private String appUrl;
 
     private final PasswordEncoder passwordEncoder;
@@ -55,7 +59,7 @@ public class AuthService {
 
         String token = generateVerificationToken(user);
 
-        // ✅ construimos el link usando appUrl (configurable en app.properties/env)
+        // ✅ construimos el link dinámicamente con APP_URL (Render o localhost)
         String verificationLink = appUrl + "/api/auth/accountVerification/" + token;
 
         mailService.sendMail(new NotificationEmail(
