@@ -16,7 +16,7 @@ public class CorsConfig {
         CorsConfiguration configuration = new CorsConfiguration();
         // Agrega AMBAS URLs: producción y desarrollo
         configuration.setAllowedOrigins(Arrays.asList(
-                "https://backend-reddit-clone-q4pl.onrender.com", // ← TU FRONTEND en Vercel
+                "https://frontend-reddit-clone-o23t-git-main-diego-bravos-projects.vercel.app/", // ← TU FRONTEND en Vercel
                 "http://localhost:4200"                          // ← Desarrollo local
         ));
         configuration.setAllowedMethods(List.of("GET","POST","PUT","DELETE","OPTIONS"));
