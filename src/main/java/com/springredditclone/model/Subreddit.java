@@ -18,14 +18,23 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @Entity
 @Builder
 public class Subreddit {
+
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
+
     private String name;
     private String description;
-    @OneToMany(fetch = LAZY)
+
+    @OneToMany(
+            mappedBy = "subreddit",   // 👈 ya no genera tabla intermedia!
+            fetch = LAZY,
+            cascade = CascadeType.ALL
+    )
     private List<Post> posts;
+
     private Instant createdDate;
+
     @ManyToOne(fetch = LAZY)
     private User user;
 }

@@ -5,6 +5,8 @@ import lombok.*;
 
 import java.time.Instant;
 
+import static jakarta.persistence.FetchType.LAZY;
+
 @Getter
 @Setter
 @Entity
@@ -20,11 +22,11 @@ public class Post {
     @Lob
     private String description;
     private Integer voteCount = 0;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "userId", referencedColumnName = "userId")
     private User user;
     private Instant createdDate;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id", referencedColumnName = "id")
+    @ManyToOne(fetch = LAZY)
+    @JoinColumn(name = "subreddit_id")
     private Subreddit subreddit;
 }
